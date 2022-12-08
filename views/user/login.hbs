@@ -1,0 +1,28 @@
+<section>
+<div class="container">
+
+<div class="row">
+
+
+  <div class="col-md-6">
+    <h2 class="text-center"> login</h2>
+    <form action="/login" method="post">
+    {{#if loginErr}}
+    <p class="error"> invalid username and password</p>
+     {{/if}}  
+    <label for="">email</label>
+    <input type="email" name="Email" class="form-control" placeholder="enter email">
+    
+    <label for="">password</label>
+    <input type="password" name="Password" class="form-control" placeholder="password">
+
+    
+<a href="/signup">create new account</a>
+  <button type="submit" class="btn btn-primary mt-4 ml-end">login</button>
+</form>
+</div>
+
+
+</div>
+</div>
+</section>
