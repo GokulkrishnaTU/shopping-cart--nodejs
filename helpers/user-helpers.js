@@ -399,7 +399,18 @@ changePaymentStatus:(orderId)=>{
             resolve()
         })
 })
+},
+
+lowerToHigh: ()=>{
+    return new Promise(async(resolve,reject)=>{
+      let products= await db.get().collection(collection.PRODUCT_COLLECTION).aggregate([{$sort:{Price:1}}]).toArray()
+      resolve(products)
+    })
+
 }
+
+
+
 
 
 }

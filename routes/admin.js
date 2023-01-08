@@ -6,6 +6,10 @@ var productHelpers=require('../helpers/product-helpers')
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
+
+    // productHelpers.getAllProducts((products)=>{
+
+
   productHelpers.getAllProducts().then((products)=>{
     // console.log(products);
 
@@ -37,18 +41,28 @@ router.get('/add-products',function(req,res){
 router.post('/add-products',(req,res)=>{
  
   productHelpers.addProduct(req.body,(inseredtId)=>{
-    let image=req.files.Image
-    const imageName=inseredtId
+   
 
-    image.mv('./public/product-images/'+imageName+'.jpg',(err,done)=>{
-      if(!err){
-        // res.render("admin/add-products")
-        res.redirect("/admin")
+    if(req.files){
 
-      }else{
-        console.log(err);
-      }
-    })
+      let image=req.files.Image
+      const imageName=inseredtId
+      image.mv('./public/product-images/'+imageName+'.jpg',(err,done)=>{
+        if(!err){
+          // res.render("admin/add-products")
+          res.redirect("/admin")
+  
+        }else{
+          console.log(err);
+        }
+      })
+
+
+
+    }
+    res.redirect("/admin")
+
+
 
   })
 

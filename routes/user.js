@@ -71,7 +71,7 @@ router.get("/logout", (req, res) => {
 
 router.get("/cart", verfyLogin, async (req, res) => {
   let products = await userHelpers.getCartProducts(req.session.user._id);
-  let totalvalue=0
+  let totalValue=0
   if(products.length>0){
     totalValue = await userHelpers.getTotalAmount(req.session.user._id);
   }
@@ -144,6 +144,18 @@ router.post('/verify-payment',(req,res)=>{
     console.log(err)
     res.json({status:false,errMsg:''})
   })
+
+})
+
+router.get("/lowerToHigh",verfyLogin,(req,res)=>{
+
+  
+ userHelpers.lowerToHigh().then((products)=>{
+      res.render("user/view-products",{products,user:req.session.user})
+
+    })
+
+  
 
 })
 

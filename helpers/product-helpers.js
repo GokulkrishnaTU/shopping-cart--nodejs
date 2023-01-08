@@ -10,7 +10,7 @@ module.exports={
 
     addProduct:(product,callback)=>{
         // console.log(product);
-
+product.Price=parseInt(product.Price)
         db.get().collection('list').insertOne(product).then((data)=>{
             callback(data.insertedId)
         })
@@ -23,6 +23,23 @@ module.exports={
             resolve(products)
         })
     },
+
+
+    //    getAllProducts:(callback)=>{
+    //          setTimeout(()=>{
+    //             db.get().collection(collection.PRODUCT_COLLECTION).find().toArray().then((products)=>{
+    //                 callback(products)
+
+    //          },3000)
+            
+
+    //          })
+    //     },
+    
+
+
+
+    
 
 
     deleteProduct:(proId)=>{
@@ -56,7 +73,7 @@ module.exports={
             $set:{
                   Name:proDetails.Name,
                   Description:proDetails.Description,
-                  Price:proDetails.Price,
+                  Price:parseInt(proDetails.Price) ,
                   Category:proDetails.Category
 
 
