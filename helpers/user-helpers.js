@@ -2,7 +2,7 @@ var db=require('../config/connection')
 var collection=require('../config/collection')
 const bcrypt=require('bcrypt')
 const async = require('hbs/lib/async')
-const { ObjectID } = require('bson')
+const { ObjectID, ObjectId } = require('bson')
 const { reject, promise } = require('bcrypt/promises')
 const { response } = require('express')
 var objectId=require('mongodb').ObjectId
@@ -407,10 +407,32 @@ lowerToHigh: ()=>{
       resolve(products)
     })
 
+},
+
+highTolow: ()=>{
+    return new Promise(async(resolve,reject)=>{
+      let products= await db.get().collection(collection.PRODUCT_COLLECTION).aggregate([{$sort:{Price:-1}}]).toArray()
+      resolve(products)
+    })
+
+},
+
+deleteCart:(fullId)=>{
+    return new Promise((resolve,reject)=>{
+        db.get().collection(collection.CART_COLLECTION).updateOne({_id:objectId(fullId.cart)},
+        {
+            $pull:{products:{item:objectId(fullId.product)}}
+        }
+        ).then((response)=>{
+            resolve({removeProduct:true})
+        })
+   
+
+    
+})
+
+
 }
-
-
-
 
 
 }

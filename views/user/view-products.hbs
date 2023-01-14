@@ -2,13 +2,20 @@
 
 <section>
     <div class="container">
+      <div class="search mt-5">
+
+<input type="text" id="myInput" autocomplete="off" placeholder="Search" name="text" class="input" onkeyup="search()">
+</div>
+
+
+
     <div class="row mt-5">
          {{#each products}}
         <div class="col-md-3 p-3" >
         <div class="card " style="width:15rem ;height:25rem">
   <img class="card-img-top p-2" style="width:15rem ;height:12rem;" src="/product-images/{{this._id}}.jpg" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title">{{this.Name}}</h5>
+    <h5 class="card-title1 ">{{this.Name}}</h5>
     <p class="card-text">{{this.Description}}</p>
         <h6 class="card-title">{{this.Price}} INR</h6>
 
@@ -31,6 +38,102 @@
     border-radius: 200px;
 
   }
+
+
+
+  {{!-- .card {
+  width: 190px;
+  height: 254px;
+  background: #07182E;
+  position: relative;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.card h2 {
+  z-index: 1;
+  color: white;
+  font-size: 2em;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 130%;
+  animation: rotBGimg 3s linear infinite;
+  transition: all 0.2s linear;
+}
+
+@keyframes rotBGimg {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+
+  ;
+  inset: 5px;
+  border-radius: 15px;
+}   --}}
+
+
+.input {
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
+ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-repeat: no-repeat;
+  border-radius: 89% 29% 90% 23% / 0% 100% 0% 100%;
+  border-color: transparent;
+  width: 200px;
+  height: 50px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 500;
+  font-family: inherit;
+  box-shadow: 23px 23px 46px #bebebe,
+             -23px -23px 46px #ffffff;
+}
+
+.input::placeholder {
+  color: black;
+}
 </style>
+
+<script>
+  function search() {
+  // Declare variables
+  var input, filter;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  cards = document.getElementsByClassName("card")
+  titles = document.getElementsByClassName("card-title1");
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < cards.length; i++) {
+    a = titles[i];
+    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      cards[i].style.display = "";
+    } else {
+      cards[i].style.display = "none";
+    }
+  }
+}
+</script>
 
   

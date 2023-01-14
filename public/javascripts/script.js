@@ -14,3 +14,27 @@ function addToCart(proId){
          }
     })
 }
+
+
+
+
+function cartDelete(cartId,proId){
+    $.ajax({
+      url:'/deleteCart',
+      data:{
+        cart:cartId,
+        product:proId
+      },
+      method:'post',
+      success:(response)=>{
+if(response.removeProduct){
+  alert("sucess")
+  location.reload()
+
+}
+      }
+
+
+
+    })
+   }

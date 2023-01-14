@@ -159,4 +159,28 @@ router.get("/lowerToHigh",verfyLogin,(req,res)=>{
 
 })
 
+
+router.get("/highToLow",verfyLogin,(req,res)=>{
+
+  
+  userHelpers.highTolow().then((products)=>{
+       res.render("user/view-products",{products,user:req.session.user})
+ 
+     })
+ 
+   
+ 
+ })
+
+ router.post('/deleteCart',(req,res)=>{
+   userHelpers.deleteCart(req.body).then((response)=>{
+    res.json(response)
+
+   })
+
+
+  
+
+ })
+
 module.exports = router;
