@@ -1,27 +1,47 @@
 
 
-<section>
-    <div class="container">
+<section class="col-12">
+    <div class="container ">
       <div class="search mt-5">
+        <div style="display: flex;">
+          <div>
 
-<input type="text" id="myInput" autocomplete="off" placeholder="Search" name="text" class="input" onkeyup="search()">
+<input type="text" id="myInput" autocomplete="off" placeholder="Search" name="text" class="input col-12" onkeyup="search()">
+</div>
+
+<div>
+<h1 style="margin-left: 160px;">Shoppify-Cart</h1 >
+</div>
+</div>
 </div>
 
 
 
     <div class="row mt-5">
          {{#each products}}
-        <div class="col-md-3 p-3" >
-        <div class="card " style="width:15rem ;height:25rem">
+        <div class="col-md-3 col-12 p-5 " >
+        <div class="card " >
+         <div class="card2 ">
+          <a href="/showImage/{{this._id}}">
   <img class="card-img-top p-2" style="width:15rem ;height:12rem;" src="/product-images/{{this._id}}.jpg" alt="Card image cap">
+  </a>
   <div class="card-body">
     <h5 class="card-title1 ">{{this.Name}}</h5>
     <p class="card-text">{{this.Description}}</p>
         <h6 class="card-title">{{this.Price}} INR</h6>
+     
+        <div><button  class="learn-more" onclick="addToCart('{{this._id}}')" class="btn btn-primary">
+           <span class="circle" aria-hidden="true">
+  <span class="icon arrow"></span>
+  </span>
+  <span class="button-text">Add to cart</span>
+          
+          </button></div>  
 
-    <button onclick="addToCart('{{this._id}}')" class="btn btn-primary">Add to cart</button>
+
   </div>
 </div>
+</div> 
 </div>
 
  {{/each}}
@@ -30,62 +50,66 @@
 
 </section>
 <style>
+  h1 {
+  --s: 0.1em;   /* the thickness of the line */
+  --c:#ff4c68 ; /* the color */
+  
+  color: #0000;
+  padding-bottom: var(--s);
+  background: 
+    linear-gradient(90deg,var(--c) 50%,#000 0) calc(100% - var(--_p,0%))/200% 100%,
+    linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
+  -webkit-background-clip: text,padding-box;
+          background-clip: text,padding-box;
+  transition: 0.5s;
+}
+h1:hover {--_p: 100%}
+
+
+
+h1 {
+  font-family: system-ui, sans-serif ,Georgia, 'Times New Roman', Times, serif;
+  font-size: 4rem;
+  cursor: pointer;
+}
 
 
   .card-title{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 20px;
     border-radius: 200px;
+    outline: black;
 
   }
 
+.card {
+width:15rem ;
+height:25rem;
+ background-image: linear-gradient( #f7797d, #C6FFDD, #FBD786 100%);
+ transition: all .3s;
+ outline: black;
 
-
-  {{!-- .card {
-  width: 190px;
-  height: 254px;
-  background: #07182E;
-  position: relative;
-  display: flex;
-  place-content: center;
-  place-items: center;
-  overflow: hidden;
-  border-radius: 20px;
+ 
 }
 
-.card h2 {
-  z-index: 1;
-  color: white;
-  font-size: 2em;
+.card2 {
+ width: 15rem;
+ height: 25rem;
+ background-color: white;
+ transition: all .2s;
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  width: 100px;
-  height: 130%;
-  animation: rotBGimg 3s linear infinite;
-  transition: all 0.2s linear;
+.card2:hover {
+ transform: scale(0.98);
+ border-radius: 20px;
 }
 
-@keyframes rotBGimg {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+.card:hover {
+ box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
 }
 
-.card::after {
-  content: '';
-  position: absolute;
 
-  ;
-  inset: 5px;
-  border-radius: 15px;
-}   --}}
+ 
 
 
 .input {
@@ -112,6 +136,105 @@
 
 .input::placeholder {
   color: black;
+}
+
+
+{{!-- button --}}
+
+button {
+ position: relative;
+ display: inline-block;
+ cursor: pointer;
+ outline: none;
+ border: 0;
+ vertical-align: middle;
+ text-decoration: none;
+ background: transparent;
+ padding: 0;
+ font-size: inherit;
+ font-family: inherit;
+
+}
+button:focus{border: 0;outline: 0;}
+
+button.learn-more {
+ width: 12rem;
+ height: auto;
+}
+
+button.learn-more .circle {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: relative;
+ display: block;
+ margin: 0;
+ width: 3rem;
+ height: 3rem;
+ background: dodgerblue;
+ border-radius: 1.625rem;
+ outline: none;
+}
+
+button.learn-more .circle .icon {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ margin: auto;
+ background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ left: 0.625rem;
+ width: 1.125rem;
+ height: 0.125rem;
+ background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+ position: absolute;
+ content: "";
+ top: -0.29rem;
+ right: 0.0625rem;
+ width: 0.625rem;
+ height: 0.625rem;
+ border-top: 0.125rem solid #fff;
+ border-right: 0.125rem solid #fff;
+ transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ padding: 0.75rem 0;
+ margin: 0 0 0 1.85rem;
+ color: black
+ font-weight: 700;
+ line-height: 1.6;
+ text-align: center;
+ text-transform: uppercase;
+
+}
+
+button:hover .circle {
+ width: 100%;
+ outline: none;
+ border: none;
+}
+
+button:hover .circle .icon.arrow {
+ background: #fff;
+ transform: translate(1rem, 0);
+ outline: none;
+ border: none;
+}
+
+button:hover .button-text {
+ color: black;
 }
 </style>
 

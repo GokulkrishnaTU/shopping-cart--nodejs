@@ -183,4 +183,12 @@ router.get("/highToLow",verfyLogin,(req,res)=>{
 
  })
 
+ router.get('/showImage/:id',(req,res)=>{
+userHelpers.showImage(req.params.id).then((response)=>{
+res.render('user/showimg',{response,user:req.session.user})
+
+})
+
+ })
+
 module.exports = router;

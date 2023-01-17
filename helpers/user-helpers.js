@@ -432,6 +432,14 @@ deleteCart:(fullId)=>{
 })
 
 
+},
+
+showImage:(imgId)=>{
+    return new Promise(async(resolve,reject)=>{
+      var item=await db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:objectId(imgId)})
+      resolve(item)
+    })
+
 }
 
 
